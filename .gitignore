@@ -1,0 +1,8 @@
+.idea
+.DS_Store
+l_amat.zip
+fcculs.db
+*.dat
+*.csv
+__pycache__
+counts

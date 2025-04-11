@@ -1,0 +1,5 @@
+cd /pub/uls/complete
+dir l_amat.zip
+get l_amat.zip
+quit
+
