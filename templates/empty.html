@@ -39,32 +39,5 @@
         <input type="submit" value="Search">
     </form>
 
-    {% if results %}
-        <h2>Results</h2>
-        <table>
-            <tr>
-                <th>Call Sign</th>
-                <th>License Status</th>
-                <th>Operator Class</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>City</th>
-                <th>State</th>
-            </tr>
-            {% for row in results %}
-                <tr>
-                    <td>{{ row['call_sign'] }}</td>
-                    <td>{{ row['license_status'] }}</td>
-                    <td>{{ row['operator_class'] }}</td>
-                    <td>{{ row['first_name'].title() }}</td>
-                    <td>{{ row['last_name'].title() }}</td>
-                    <td>{{ row['city'].title() }}</td>
-                    <td>{{ row['state'] }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <h2>No matches found</h2>
-    {% endif %}
 </body>
 </html>

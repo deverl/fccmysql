@@ -34,8 +34,6 @@ def index():
     if ua.is_mobile:
         template = "mobile.html"
         
-    print(f"template = {template}")
-        
     query = """
         SELECT en.call_sign, hd.license_status, am.operator_class,
                am.region_code, en.first_name, en.last_name,
@@ -88,6 +86,7 @@ def index():
             conn.close()
     else:
         results = []
+        template = "empty.html"
             
     return render_template(template, params=query_params, results=results)
 
