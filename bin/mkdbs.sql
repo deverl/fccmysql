@@ -131,6 +131,8 @@ CREATE TABLE am (
 CREATE INDEX en_sys_id_index ON en (sys_id);
 CREATE INDEX en_call_sign_index ON en (call_sign);
 CREATE INDEX en_first_name_last_name_index ON en (first_name, last_name);
+CREATE INDEX en_first_name_last_name_city_index ON en (first_name, last_name, city);
+CREATE INDEX en_first_name_last_name_city_state_index ON en (first_name, last_name, city, state);
 CREATE INDEX en_last_name_index ON en (last_name);
 CREATE INDEX en_city_state_index ON en (city, state);
 CREATE INDEX en_city ON en (city);
