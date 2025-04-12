@@ -35,7 +35,7 @@ def index():
         template = "mobile.html"
         
     query = """
-        SELECT en.call_sign, hd.license_status, am.operator_class,
+        SELECT en.call_sign, hd.license_status, am.operator_class, en.frn,
                am.region_code, en.first_name, en.last_name,
                en.street_address, en.city, en.state
         FROM en

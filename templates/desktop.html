@@ -12,6 +12,7 @@
         th, td {
             border: 1px solid black;
             padding: 4px;
+            text-align: left;
         }
     </style>
 </head>
@@ -44,9 +45,10 @@
         <table>
             <tr>
                 <th>Call Sign</th>
-                <th>License Status</th>
-                <th>Operator Class</th>
-                <th>Region Code</th>
+                <th>Status</th>
+                <th>Class</th>
+                <th>FRN</th>
+                <th>Region</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Address</th>
@@ -58,11 +60,12 @@
                     <td>{{ row['call_sign'] }}</td>
                     <td>{{ row['license_status'] }}</td>
                     <td>{{ row['operator_class'] }}</td>
+                    <td>{{ row['frn'] }}</td>
                     <td>{{ row['region_code'] }}</td>
-                    <td>{{ row['first_name'].title() }}</td>
-                    <td>{{ row['last_name'].title() }}</td>
-                    <td>{{ row['street_address'].title()}}</td>
-                    <td>{{ row['city'].title() }}</td>
+                    <td>{{ row['first_name'] }}</td>
+                    <td>{{ row['last_name'] }}</td>
+                    <td>{{ row['street_address']}}</td>
+                    <td>{{ row['city'] }}</td>
                     <td>{{ row['state'] }}</td>
                 </tr>
             {% endfor %}
