@@ -16,8 +16,8 @@
             <label>Last Name: <input type="text" name="last_name" value="{{ params.last_name if (params.last_name is defined and params.last_name is not none) else '' }}"></label><br>
             <label>City: <input type="text" name="city" value="{{ params.city if (params.city is defined and params.city is not none) else '' }}"></label><br>
             <label>State: <input type="text" name="state" value="{{ params.state if (params.state is defined and params.state is not none) else '' }}"></label><br> -->
-        
-        
+
+
             <table>
               <tr>
                 <td class="label">Call Sign:</td>
@@ -50,7 +50,7 @@
                 </td>
               </tr>
             </table>
-        
+
 
 
             <div>
@@ -63,10 +63,10 @@
             <div>
                 <div class="subtitle">Operator Class:</div>
                 {% for op_class in ['A', 'E', 'G', 'N', 'P', 'T'] %}
-                    <label><input type="checkbox" name="operator_class" value="{{ op_class }}" {% if op_class in request.args.getlist('operator_class') or (not request.args and op_class in ['T', 'G', 'E']) %}checked{% endif %}> {{ op_class }}</label>
+                    <label><input type="checkbox" name="operator_class" value="{{ op_class }}" {% if op_class in request.args.getlist('operator_class') or (not request.args and op_class in ['A', 'T', 'G', 'N', 'P', 'E']) %}checked{% endif %}> {{ op_class }}</label>
                 {% endfor %}
             </div>
-        
+
             <div>
                 <div class="subtitle">Formatting:</div>
                 <label>
@@ -75,7 +75,7 @@
                     Apply Title Case
                 </label>
             </div>
-        
+
             <div class="button-row">
                 <input type="submit" value="Search">
             </div>
