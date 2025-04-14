@@ -1,11 +1,38 @@
+sudo apt update
+sudo apt install python3-pip python3-venv nginx user-agents mariadb-server
 
 
 
+sudo mysql_secure_installation
+
+
+sudo systemctl enable mariadb
+sudo systemctl start mariadb
+
+
+sudo systemctl status mariadb
+
+
+CREATE DATABASE fcc;
+CREATE USER 'fccuser'@'localhost' IDENTIFIED BY 'fccuser';
+GRANT ALL PRIVILEGES ON fcc.* TO 'fccuser'@'localhost';
+FLUSH PRIVILEGES;
+
+
+
+sudo systemctl status nginx
+
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+
+cd /path/to/fccmysql
 
 rm -rf venv
 python3 -m venv venv
 source venv/bin/activate
-pip install flask gunicorn
+pip install flask gunicorn pymysql mysql-connector-python
 
 
 
@@ -44,5 +71,10 @@ sudo systemctl daemon-reload
 sudo systemctl start myflaskapp
 sudo systemctl enable myflaskapp
 
+sudo rm /etc/nginx/sites-enabled/default
 
+
+sudo ln -s /etc/nginx/sites-available/myflaskapp /etc/nginx/sites-enabled
+sudo nginx -t
+sudo systemctl restart nginx
 
