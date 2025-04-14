@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <title>Ham Radio Lookup</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAM Radio Lookup</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}"> <!-- Link to the external CSS file -->
+</head>
+<body>
+    <div class="query">
+        <h1>Ham Radio License Lookup</h1>
+        <form method="get">
+            <!-- <label>Call Sign: <input type="text" name="call_sign" value="{{ params.call_sign if (params.call_sign is defined and params.call_sign is not none) else '' }}"></label><br>
+            <label>First Name: <input type="text" name="first_name" value="{{ params.first_name if (params.first_name is defined and params.first_name is not none) else '' }}"></label><br>
+            <label>Last Name: <input type="text" name="last_name" value="{{ params.last_name if (params.last_name is defined and params.last_name is not none) else '' }}"></label><br>
+            <label>City: <input type="text" name="city" value="{{ params.city if (params.city is defined and params.city is not none) else '' }}"></label><br>
+            <label>State: <input type="text" name="state" value="{{ params.state if (params.state is defined and params.state is not none) else '' }}"></label><br> -->
+        
+        
+            <table>
+              <tr>
+                <td class="label">Call Sign:</td>
+                <td>
+                  <input type="text" name="call_sign" value="{{ params.call_sign if (params.call_sign is defined and params.call_sign is not none) else '' }}">
+                </td>
+              </tr>
+              <tr>
+                <td class="label">First Name:</td>
+                <td>
+                  <input type="text" name="first_name" value="{{ params.first_name if (params.first_name is defined and params.first_name is not none) else '' }}">
+                </td>
+              </tr>
+              <tr>
+                <td class="label">Last Name:</td>
+                <td>
+                  <input type="text" name="last_name" value="{{ params.last_name if (params.last_name is defined and params.last_name is not none) else '' }}">
+                </td>
+              </tr>
+              <tr>
+                <td class="label">City:</td>
+                <td>
+                  <input type="text" name="city" value="{{ params.city if (params.city is defined and params.city is not none) else '' }}">
+                </td>
+              </tr>
+              <tr>
+                <td class="label">State:</td>
+                <td>
+                  <input type="text" name="state" value="{{ params.state if (params.state is defined and params.state is not none) else '' }}">
+                </td>
+              </tr>
+            </table>
+        
+
+
+            <div>
+                <div class="subtitle">License Status:</div>
+                {% for status in ['A', 'C', 'E', 'L', 'P', 'T', 'X'] %}
+                    <label><input type="checkbox" name="license_status" value="{{ status }}" {% if status in request.args.getlist('license_status') or (not request.args and status == 'A') %}checked{% endif %}> {{ status }}</label>
+                {% endfor %}
+            </div>
+
+            <div>
+                <div class="subtitle">Operator Class:</div>
+                {% for op_class in ['A', 'E', 'G', 'N', 'P', 'T'] %}
+                    <label><input type="checkbox" name="operator_class" value="{{ op_class }}" {% if op_class in request.args.getlist('operator_class') or (not request.args and op_class in ['T', 'G', 'E']) %}checked{% endif %}> {{ op_class }}</label>
+                {% endfor %}
+            </div>
+        
+            <div>
+                <div class="subtitle">Formatting:</div>
+                <label>
+                    <input type="checkbox" name="title_case" value="1"
+                           {% if params.get('title_case') or not request.args %}checked{% endif %}>
+                    Apply Title Case
+                </label>
+            </div>
+        
+            <div class="button-row">
+                <input type="submit" value="Search">
+            </div>
+        </form>
+    </div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

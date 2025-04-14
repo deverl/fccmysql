@@ -1,0 +1,31 @@
+div.query table {
+    border: none;
+    border-collapse: collapse;
+}
+div.query table td {
+    border: none;
+    padding: 4px;
+}
+div.query table td.label {
+    font-weight: bold;
+    text-align: right;
+}
+div.results table {
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid black;
+    padding: 4px;
+    text-align: left;
+}
+div.subtitle {
+    margin-top: 10px;
+    font-weight: bold;
+}
+div.button-row {
+    margin-top: 12px;
+}
+div.button-row input {
+    padding: 4px 8px;
+    font-size: 14px;
+}

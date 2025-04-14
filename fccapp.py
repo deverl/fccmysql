@@ -23,6 +23,7 @@ def index():
         'state': request.args.get('state'),
         'license_status': request.args.getlist('license_status') or (['A'] if not request.args else []),
         'operator_class': request.args.getlist('operator_class') or (['T', 'G', 'E'] if not request.args else []),
+        'title_case': request.args.get('title_case') == '1',
     }
     
     
