@@ -6,3 +6,4 @@ fcculs.db
 *.csv
 __pycache__
 counts
+venv
