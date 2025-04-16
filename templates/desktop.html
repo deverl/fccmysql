@@ -1,42 +1,40 @@
 {% extends "base.html" %}
 
 
-
-
 {% block content %}
-    {% if results %}
-        <div class="results">
-            <h2>Results ({{ results|length }})</h2>
-            <table>
-                <tr>
-                    <th>Call Sign</th>
-                    <th>Status</th>
-                    <th>Class</th>
-                    <th>FRN</th>
-                    <th>Region</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>State</th>
-                </tr>
-                {% for row in results %}
-                    <tr>
-                        <td>{{ row['call_sign'] }}</td>
-                        <td>{{ row['license_status'] }}</td>
-                        <td>{{ row['operator_class'] }}</td>
-                        <td>{{ row['frn'] }}</td>
-                        <td>{{ row['region_code'] }}</td>
-                        <td>{{ row['first_name'].title() if params.get('title_case') else row['first_name'] }}</td>
-                        <td>{{ row['last_name'].title() if params.get('title_case') else row['last_name'] }}</td>
-                        <td>{{ row['street_address'].title() if params.get('title_case') else row['street_address'] }}</td>
-                        <td>{{ row['city'].title() if params.get('title_case') else row['city'] }}</td>
-                        <td>{{ row['state'] }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
+{% if results %}
+<div class="results">
+    <h2>Results ({{ results|length }})</h2>
+    <table>
+        <tr>
+            <th>Call Sign</th>
+            <th>Status</th>
+            <th>Class</th>
+            <th>FRN</th>
+            <th>Region</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+        </tr>
+        {% for row in results %}
+        <tr>
+            <td>{{ row['call_sign'] }}</td>
+            <td>{{ row['license_status'] }}</td>
+            <td>{{ row['operator_class'] }}</td>
+            <td>{{ row['frn'] }}</td>
+            <td>{{ row['region_code'] }}</td>
+            <td>{{ row['first_name'].title() if params.get('title_case') else row['first_name'] }}</td>
+            <td>{{ row['last_name'].title() if params.get('title_case') else row['last_name'] }}</td>
+            <td>{{ row['street_address'].title() if params.get('title_case') else row['street_address'] }}</td>
+            <td>{{ row['city'].title() if params.get('title_case') else row['city'] }}</td>
+            <td>{{ row['state'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
     {% else %}
-            <h2>No matches found</h2>
+    <h2>No matches found</h2>
     {% endif %}
-        </div>
+</div>
 {% endblock %}
