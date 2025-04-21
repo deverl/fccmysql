@@ -25,26 +25,29 @@ def index():
         'operator_class': request.args.getlist('operator_class') or (['T', 'G', 'E'] if not request.args else []),
         'title_case': request.args.get('title_case') == '1',
     }
-    
-    
+
+
     user_agent = request.headers.get('User-Agent')
     ua = parse(user_agent)
-    
+
     template = "desktop.html"
 
     if ua.is_mobile:
         template = "mobile.html"
-        
+
     query = """
         SELECT en.call_sign, hd.license_status, am.operator_class, en.frn,
-               am.region_code, en.first_name, en.last_name,
+               am.region_code,
+               if(dmr.radio_id is not null, dmr.radio_id, "") as dmr_id,
+               en.first_name, en.last_name,
                en.street_address, en.city, en.state
         FROM en
         JOIN hd ON hd.sys_id = en.sys_id
         JOIN am ON am.sys_id = en.sys_id
+        LEFT JOIN dmr on dmr.call_sign = en.call_sign
         WHERE 1=1
     """
-    
+
     params = []
 
     if query_params['call_sign'] or query_params['first_name'] or query_params['last_name'] or query_params['city'] or query_params['state']:
@@ -73,7 +76,7 @@ def index():
             params.extend([c.upper() for c in query_params['operator_class']])
 
         query += " ORDER BY en.last_name ASC, en.first_name ASC"
-        
+
         try:
             conn = mysql.connector.connect(**DB_CONFIG)
             cur = conn.cursor(dictionary=True)
@@ -88,7 +91,7 @@ def index():
     else:
         results = []
         template = "empty.html"
-            
+
     return render_template(template, params=query_params, results=results)
 
 if __name__ == '__main__':

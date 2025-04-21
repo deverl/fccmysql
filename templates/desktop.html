@@ -12,6 +12,7 @@
             <th>Class</th>
             <th>FRN</th>
             <th>Region</th>
+            <th>DMR ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Address</th>
@@ -25,6 +26,7 @@
             <td>{{ row['operator_class'] }}</td>
             <td>{{ row['frn'] }}</td>
             <td>{{ row['region_code'] }}</td>
+            <td>{{ row['dmr_id'] }}</td>
             <td>{{ row['first_name'].title() if params.get('title_case') else row['first_name'] }}</td>
             <td>{{ row['last_name'].title() if params.get('title_case') else row['last_name'] }}</td>
             <td>{{ row['street_address'].title() if params.get('title_case') else row['street_address'] }}</td>
