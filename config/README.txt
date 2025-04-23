@@ -78,3 +78,16 @@ sudo ln -s /etc/nginx/sites-available/myflaskapp /etc/nginx/sites-enabled
 sudo nginx -t
 sudo systemctl restart nginx
 
+
+
+
+
+
+
+# Put this line in the crontab file to automatically update the database every Monday morning
+
+0 2 * * 1 cd /root/projects/fccmysql && /root/projects/fccmysql/bin/udpate.sh >> /root/projects/fccmysql/update.log 2>&1
+
+
+
+
