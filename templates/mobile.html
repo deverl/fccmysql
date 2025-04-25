@@ -19,9 +19,9 @@
             <td>{{ row['call_sign'] }}</td>
             <td>{{ row['license_status'] }}</td>
             <td>{{ row['operator_class'] }}</td>
-            <td>{{ row['first_name'].title() if params.get('title_case') else row['first_name'] }}</td>
-            <td>{{ row['last_name'].title() if params.get('title_case') else row['last_name'] }}</td>
-            <td>{{ row['city'].title() if params.get('title_case') else row['city'] }}</td>
+            <td>{{ row['first_name'] }}</td>
+            <td>{{ row['last_name'] }}</td>
+            <td>{{ row['city'] }}</td>
             <td>{{ row['state'] }}</td>
         </tr>
         {% endfor %}

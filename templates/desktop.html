@@ -27,10 +27,10 @@
             <td>{{ row['frn'] }}</td>
             <td>{{ row['region_code'] }}</td>
             <td>{{ row['dmr_id'] }}</td>
-            <td>{{ row['first_name'].title() if params.get('title_case') else row['first_name'] }}</td>
-            <td>{{ row['last_name'].title() if params.get('title_case') else row['last_name'] }}</td>
-            <td>{{ row['street_address'].title() if params.get('title_case') else row['street_address'] }}</td>
-            <td>{{ row['city'].title() if params.get('title_case') else row['city'] }}</td>
+            <td>{{ row['first_name'] }}</td>
+            <td>{{ row['last_name'] }}</td>
+            <td>{{ row['street_address'] }}</td>
+            <td>{{ row['city'] }}</td>
             <td>{{ row['state'] }}</td>
         </tr>
         {% endfor %}

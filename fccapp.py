@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from user_agents import parse
+from titlecase import titlecase
 import mysql.connector
 
 app = Flask(__name__)
@@ -15,6 +16,24 @@ DB_CONFIG = {
 
 @app.route('/', methods=['GET'])
 def index():
+    template = "desktop.html"
+    user_agent = request.headers.get('User-Agent')
+    ua = parse(user_agent)
+    if ua.is_mobile:
+        template = "mobile.html"
+    results, query_params = fetch_data(request)
+    if len(results) == 0:
+        template = "empty.html"
+    return render_template(template, params=query_params, results=results)
+
+
+@app.route('/api', methods=['GET'])
+def api():
+    results, _ = fetch_data(request)
+    return jsonify(results)
+
+
+def fetch_data(request):
     query_params = {
         'call_sign': request.args.get('call_sign'),
         'first_name': request.args.get('first_name'),
@@ -25,15 +44,6 @@ def index():
         'operator_class': request.args.getlist('operator_class') or (['T', 'G', 'E'] if not request.args else []),
         'title_case': request.args.get('title_case') == '1',
     }
-
-
-    user_agent = request.headers.get('User-Agent')
-    ua = parse(user_agent)
-
-    template = "desktop.html"
-
-    if ua.is_mobile:
-        template = "mobile.html"
 
     query = """
         SELECT en.call_sign, hd.license_status, am.operator_class, en.frn,
@@ -90,9 +100,17 @@ def index():
             conn.close()
     else:
         results = []
-        template = "empty.html"
 
-    return render_template(template, params=query_params, results=results)
+    if query_params['title_case']:
+        for result in results:
+            result['first_name'] = titlecase(result['first_name'])
+            result['last_name'] = titlecase(result['last_name'])
+            result['street_address'] = titlecase(result['street_address'])
+            result['city'] = titlecase(result['city'])
+
+    return results, query_params
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
