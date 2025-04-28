@@ -17,6 +17,7 @@ DB_CONFIG = {
 @app.route('/', methods=['GET'])
 def index():
     template = "desktop.html"
+    row = None
     user_agent = request.headers.get('User-Agent')
     ua = parse(user_agent)
     if ua.is_mobile:
@@ -24,7 +25,10 @@ def index():
     results, query_params = fetch_data(request)
     if len(results) == 0:
         template = "empty.html"
-    return render_template(template, params=query_params, results=results)
+    elif len(results) == 1:
+        template = "single.html"
+        row = results[0]
+    return render_template(template, params=query_params, results=results, row=row)
 
 
 @app.route('/api', methods=['GET'])

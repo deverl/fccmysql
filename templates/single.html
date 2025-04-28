@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    div.results {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        padding-top: 20px;
+        padding-left: 20px;
+    }
+    div.name {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    div.address {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    table.info {
+        border: none;
+        border-collapse: collapse;
+    }
+    table.info td {
+        border: none;
+    }
+    table.info td.item {
+        text-align: right;
+    }
+    table.info td.value {
+        text-align: left;
+        font-weight:bolder
+    }
+</style>
+<div class="results">
+    <div class="name">{{ row['first_name'] }} {{ row['last_name'] }}</div>
+    <div class="address">
+        <div>{{ row['street_address'] }}</div>
+        <div>{{ row['city'] }}, {{ row['state'] }}</div>
+    </div>
+
+    <table class="info">
+        <tr>
+            <td class="item">Call Sign:</td>
+            <td class="value">{{ row['call_sign'] }}</td>
+        </tr>
+        <tr>
+            <td class="item">Status:</td>
+            <td class="value">{{ row['license_status'] }}</span></td>
+        </tr>
+        <tr>
+            <td class="item">Class:</td>
+            <td class="value">{{ row['operator_class'] }}</span></td>
+        </tr>
+        <tr>
+            <td class="item">FRN:</td>
+            <td class="value">{{ row['frn'] }}</span></td>
+        </tr>
+        <tr>
+            <td class="item">Region:</td>
+            <td class="value">{{ row['region_code'] }}</span></td>
+        </tr>
+        {% if row['dmr_id'] %}
+        <tr>
+            <td class="item">DMR ID:</td>
+            <td class="value">{{ row['dmr_id'] }}</span></td>
+        </tr>
+        {% endif %}
+    </table>
+</div>
+{% endblock %}
