@@ -54,7 +54,7 @@ def fetch_data(request):
                am.region_code,
                if(dmr.radio_id is not null, dmr.radio_id, "") as dmr_id,
                en.first_name, en.last_name,
-               en.street_address, en.city, en.state
+               en.street_address, en.city, en.state, en.zip
         FROM en
         JOIN hd ON hd.sys_id = en.sys_id
         JOIN am ON am.sys_id = en.sys_id

@@ -16,7 +16,7 @@
         </tr>
         {% for row in results %}
         <tr>
-            <td>{{ row['call_sign'] }}</td>
+            <td><a class="no-underline" href="/?call_sign={{ row['call_sign'] | urlencode }}&first_name={{ row['first_name'] | urlencode}}&last_name={{ row['last_name'] | urlencode}}&city={{ row['city'] | urlencode}}&state={{ row['state'] | urlencode}}&license_status={{ row['license_status'] | urlencode}}&operator_class={{ row['operator_class'] | urlencode}}">{{ row['call_sign'] }}</a></td>
             <td>{{ row['license_status'] }}</td>
             <td>{{ row['operator_class'] }}</td>
             <td>{{ row['first_name'] }}</td>

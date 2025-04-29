@@ -29,3 +29,6 @@ div.button-row input {
     padding: 4px 8px;
     font-size: 14px;
 }
+a.no-underline {
+    text-decoration: none;
+}
